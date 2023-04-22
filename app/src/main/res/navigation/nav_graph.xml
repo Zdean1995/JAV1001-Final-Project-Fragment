@@ -22,16 +22,7 @@
         android:label="fragment_create_order"
         tools:layout="@layout/fragment_create_order" >
         <action
-            android:id="@+id/action_createOrderFragment_to_confirmOrderFragment"
-            app:destination="@id/confirmOrderFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/confirmOrderFragment"
-        android:name="com.auchtermuchty.pizzatime_finalproject.ConfirmOrderFragment"
-        android:label="fragment_confirm_order"
-        tools:layout="@layout/fragment_confirm_order" >
-        <action
-            android:id="@+id/action_confirmOrderFragment_to_previousOrdersFragment"
+            android:id="@+id/action_createOrderFragment_to_previousOrdersFragment"
             app:destination="@id/previousOrdersFragment" />
     </fragment>
     <fragment

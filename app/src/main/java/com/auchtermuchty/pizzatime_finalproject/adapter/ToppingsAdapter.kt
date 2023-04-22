@@ -1,16 +1,15 @@
 package com.auchtermuchty.pizzatime.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.auchtermuchty.pizzatime_finalproject.CreateOrderFragment
-import com.auchtermuchty.pizzatime_finalproject.MainActivity
 import com.auchtermuchty.pizzatime_finalproject.R
 import com.auchtermuchty.pizzatime_finalproject.model.PizzaTimeViewModel
 
+//adapter for the toppings recycler view in the create order fragment
 class ToppingsAdapter(var frag: CreateOrderFragment, var viewModel: PizzaTimeViewModel):
     RecyclerView.Adapter<ToppingsAdapter.ToppingsViewHolder>() {
     //the list of all toppings
@@ -34,7 +33,7 @@ class ToppingsAdapter(var frag: CreateOrderFragment, var viewModel: PizzaTimeVie
         holder.swtToppings.text = toppingsStrings[position]
         holder.swtToppings.setOnClickListener {
             viewModel.manageTopping(toppingsStrings[position])
-            frag.calculatePrice()
+            frag.createPizzaString()
         }
     }
 }
