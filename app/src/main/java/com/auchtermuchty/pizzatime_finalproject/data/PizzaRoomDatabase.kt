@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Pizza::class], version = 1, exportSchema = false)
+@Database(entities = [Pizza::class], version = 2, exportSchema = false)
 abstract class PizzaRoomDatabase : RoomDatabase() {
     abstract fun pizzaDao(): PizzaDao
 
@@ -23,7 +23,7 @@ abstract class PizzaRoomDatabase : RoomDatabase() {
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
-                return instance
+                instance
             }
         }
     }

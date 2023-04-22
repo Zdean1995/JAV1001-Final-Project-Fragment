@@ -18,15 +18,20 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentbinding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding = fragmentbinding
-        return fragmentbinding.root
+        val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding!!.btnCreateOrder.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_createOrderFragment)
+        }
+
+        binding!!.btnPreviousOrders.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_previousOrdersFragment)
+
         }
     }
 }

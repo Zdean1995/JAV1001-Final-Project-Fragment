@@ -25,9 +25,9 @@ class CreateOrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentbinding = FragmentCreateOrderBinding.inflate(inflater, container, false)
-        binding = fragmentbinding
-        return fragmentbinding.root
+        val fragmentBinding = FragmentCreateOrderBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
     }
 
 
@@ -78,6 +78,7 @@ class CreateOrderFragment : Fragment() {
 
         //The on click listener for the add to order button.  This will do more later
         binding!!.btnAddToOrder.setOnClickListener {
+            viewModel.addNewPizza()
         }
 
         //finally, sets the default option for pizza size to large

@@ -5,7 +5,7 @@ import com.auchtermuchty.pizzatime_finalproject.data.Pizza
 import com.auchtermuchty.pizzatime_finalproject.data.PizzaDao
 import kotlinx.coroutines.launch
 
-class PizzaTimeViewModel(private val pizzaDao: PizzaDao) : ViewModel() {
+class PizzaTimeViewModel(val pizzaDao: PizzaDao) : ViewModel() {
     val allPizzas: LiveData<List<Pizza>> = pizzaDao.getAll().asLiveData()
 
     private val _price = MutableLiveData<Double>()
@@ -27,7 +27,6 @@ class PizzaTimeViewModel(private val pizzaDao: PizzaDao) : ViewModel() {
             _toppings.value!!.add(topping)
         }
     }
-
     fun setPrice(price: Double) {
         _price.value = price
     }
@@ -35,13 +34,21 @@ class PizzaTimeViewModel(private val pizzaDao: PizzaDao) : ViewModel() {
     fun setSize(size: Size) {
         _size.value = size.size
     }
-
-    private fun insertPizza(pizza: Pizza) {
+    fun addNewPizza() {
+        val newPizza = getNewOrderEntry()
         viewModelScope.launch {
-            pizzaDao.insert(pizza)
+            pizzaDao.insert(newPizza)
         }
     }
 
+    private fun getNewOrderEntry(): Pizza {
+        return Pizza(
+            size = _size.value!!,
+            toppings = _toppings.value!!.joinToString(","),
+            price = _price.value.toString(),
+            delivery = true
+        )
+    }
 
 }
 

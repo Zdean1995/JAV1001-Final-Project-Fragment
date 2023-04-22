@@ -1,11 +1,12 @@
 package com.auchtermuchty.pizzatime_finalproject.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PizzaDao {
-    @Query("SELECT * FROM pizza")
+    @Query("SELECT * FROM pizza ORDER BY id ASC")
     fun getAll(): Flow<List<Pizza>>
 
     @Query("SELECT * FROM pizza WHERE id = :id")

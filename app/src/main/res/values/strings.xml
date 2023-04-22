@@ -12,6 +12,4 @@
     <string name="pizzaOneTopping">%s %s Pizza</string>
     <string name="pizzaManyTopping">%s %s, and %s Pizza</string>
     <string name="btn_add_to_order">Add to Order</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
