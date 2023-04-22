@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateOrderFragment">
+
+    <!--https://stackoverflow.com/questions/6305602/how-to-enable-scrolling-functionality-to-linear-layout-in-android
+    This scrollview was needed before I changed the theme's parent. May still be needed in future so I left it in -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/txt_pizza"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_toppings"
+                style="@style/txt_section_title"
+                android:text="@string/toppings" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcy_toppings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/txt_size"
+                style="@style/txt_section_title"
+                android:text="@string/txt_size" />
+
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swt_small"
+                style="@style/pizza_switch"
+                android:text="@string/txt_small" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swt_medium"
+                style="@style/pizza_switch"
+                android:text="@string/txt_medium" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swt_large"
+                style="@style/pizza_switch"
+                android:text="@string/txt_large" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/txt_pizza"
+        style="@style/txt_section_title"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_add_to_order"/>
+
+    <TextView
+        android:id="@+id/txt_price"
+        style="@style/txt_section_title"
+        android:text="@string/price_txt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_add_to_order"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/btn_add_to_order"
+        android:text="@string/btn_add_to_order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/btn_add_to_order" />
+</androidx.constraintlayout.widget.ConstraintLayout>
