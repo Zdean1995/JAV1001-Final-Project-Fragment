@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.auchtermuchty.pizzatime_finalproject.databinding.FragmentCreateOrderBinding
 import com.auchtermuchty.pizzatime_finalproject.databinding.FragmentHomeBinding
-import com.auchtermuchty.pizzatime_finalproject.model.PizzaTimeViewModel
 
+//fragment used as a home screen
 class HomeFragment : Fragment() {
-    private lateinit var viewModel: PizzaTimeViewModel
     var binding: FragmentHomeBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root

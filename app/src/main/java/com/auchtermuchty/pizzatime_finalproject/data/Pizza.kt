@@ -15,4 +15,8 @@ data class Pizza (
         val delivery: Boolean,
         @ColumnInfo(name = "price")
         val price: String
-    )
+    ) {
+        fun getToppingList(): MutableList<String> {
+                return toppings.split(",") as MutableList<String>
+        }
+}

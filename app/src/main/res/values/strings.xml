@@ -2,14 +2,16 @@
     <string name="btn_create_order">Place an Order</string>
     <string name="btn_prev_orders">View Previous Orders</string>
     <string name="app_name">Pizza Time</string>
-    <string name="price_txt">Price: $%d</string>
-    <string name="txt_small">10cm: $6</string>
-    <string name="txt_medium">12cm: $8</string>
-    <string name="txt_large">14cm: $10</string>
+    <string name="price_txt">Price: $%s</string>
+    <string name="txt_small">Small (10cm): $9</string>
+    <string name="txt_medium">Medium (12cm): $12</string>
+    <string name="txt_large">Large (14cm): $15</string>
     <string name="txt_size">Size</string>
     <string name="toppings">Toppings - $2 Each</string>
     <string name="pizzaNoToppings">%s Cheese Pizza</string>
     <string name="pizzaOneTopping">%s %s Pizza</string>
     <string name="pizzaManyTopping">%s %s, and %s Pizza</string>
-    <string name="btn_add_to_order">Add to Order</string>
+    <string name="btn_add_to_order">Place Order</string>
+    <string name="txt_delivery">Delivery</string>
+    <string name="txt_pick_up">Pick up</string>
 </resources>

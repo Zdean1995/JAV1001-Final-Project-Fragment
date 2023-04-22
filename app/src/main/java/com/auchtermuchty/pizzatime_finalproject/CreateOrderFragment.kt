@@ -1,12 +1,12 @@
 package com.auchtermuchty.pizzatime_finalproject
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.auchtermuchty.pizzatime.adapter.ToppingsAdapter
 import com.auchtermuchty.pizzatime_finalproject.databinding.FragmentCreateOrderBinding
 import com.auchtermuchty.pizzatime_finalproject.model.PizzaTimeViewModel
@@ -24,7 +24,7 @@ class CreateOrderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentCreateOrderBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -49,9 +49,8 @@ class CreateOrderFragment : Fragment() {
             binding!!.swtSmall.isClickable = true
             binding!!.swtSmall.isChecked = false
             binding!!.swtLarge.isClickable = false
-            viewModel.setPrice(10.0)
             viewModel.setSize(Size.LARGE)
-            calculatePrice()
+            createPizzaString()
         }
 
         binding!!.swtMedium.setOnClickListener{
@@ -60,9 +59,8 @@ class CreateOrderFragment : Fragment() {
             binding!!.swtSmall.isClickable = true
             binding!!.swtSmall.isChecked = false
             binding!!.swtMedium.isClickable = false
-            viewModel.setPrice(8.0)
             viewModel.setSize(Size.MEDIUM)
-            calculatePrice()
+            createPizzaString()
         }
 
         binding!!.swtSmall.setOnClickListener{
@@ -71,14 +69,14 @@ class CreateOrderFragment : Fragment() {
             binding!!.swtMedium.isClickable = true
             binding!!.swtMedium.isChecked = false
             binding!!.swtSmall.isClickable = false
-            viewModel.setPrice(6.0)
             viewModel.setSize(Size.SMALL)
-            calculatePrice()
+            createPizzaString()
         }
 
         //The on click listener for the add to order button.  This will do more later
         binding!!.btnAddToOrder.setOnClickListener {
             viewModel.addNewPizza()
+            findNavController().navigate(R.id.action_createOrderFragment_to_previousOrdersFragment)
         }
 
         //finally, sets the default option for pizza size to large
@@ -86,7 +84,10 @@ class CreateOrderFragment : Fragment() {
         binding!!.swtLarge.callOnClick()
     }
 
-    fun calculatePrice() {
+    //The method for creating a string for the pizza order as well as setting the price in the UI.
+    //Different string resources are used depending on how many toppings are on the pizza with cheese
+    //pizza being the default
+    fun createPizzaString() {
         val toppings = viewModel.toppings.value
         val size = viewModel.size.value
         when(toppings!!.count()) {
@@ -94,9 +95,11 @@ class CreateOrderFragment : Fragment() {
             1 -> binding!!.txtPizza.text = resources.getString(R.string.pizzaOneTopping, size, toppings[0])
             else -> {
                 val lastTopping = toppings.removeLast()
-                val toppings = toppings.joinToString()
-                binding!!.txtPizza.text = resources.getString(R.string.pizzaManyTopping, size, toppings, lastTopping)
+                val toppingsString = toppings.joinToString()
+                binding!!.txtPizza.text = resources.getString(R.string.pizzaManyTopping, size, toppingsString, lastTopping)
             }
         }
+        viewModel.calculatePrice()
+        binding!!.txtPrice.text = resources.getString(R.string.price_txt, viewModel.price.value.toString())
     }
 }
